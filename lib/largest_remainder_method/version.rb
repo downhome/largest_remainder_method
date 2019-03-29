@@ -1,3 +1,3 @@
-module LargestRemainderMethod
+class LargestRemainderMethod
   VERSION = "0.1.0"
 end
