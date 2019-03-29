@@ -12,27 +12,25 @@ class LargestRemainderMethod
   end
 
   def initialize(numbers, precision)
-    @precision_multiplier = 10 ** precision
-    @numbers = numbers.map.with_index {|n, i| Number.new(index: i, value: n * @precision_multiplier) }
+    @numbers = numbers.map.with_index {|n, i| Number.new(index: i, value: n, precision: precision) }
   end
 
   def call
-    rounded.sort_by(&:index).map {|n| BigDecimal.new(n.value) / precision_multiplier }
+    rounded.sort_by(&:index).map(&:value)
   end
 
   private
-  attr_reader :numbers, :precision_multiplier
+  attr_reader :numbers
 
   def rounded
     @rounded ||= sorted[0..round_up_count - 1].each(&:ceil!) + sorted[round_up_count..-1].each(&:floor!)
   end
 
   def round_up_count
-    @round_up_count ||= (numbers.map(&:value).sum - numbers.map(&:floor).sum).ceil
+    @round_up_count ||= numbers.map(&:diff).sum.abs.ceil
   end
 
   def sorted
     @sorted ||= numbers.sort_by(&:diff)
   end
-
 end

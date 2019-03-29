@@ -1,6 +1,6 @@
-class Number < Struct.new(:index, :value, :floor, :diff, keyword_init: true)
+class Number < Struct.new(:index, :value, :precision, keyword_init: true)
   def ceil
-    @ceil ||= value.ceil
+    value.ceil(precision)
   end
 
   def ceil!
@@ -8,7 +8,7 @@ class Number < Struct.new(:index, :value, :floor, :diff, keyword_init: true)
   end
 
   def floor
-    @floor ||= value.floor
+    value.floor(precision)
   end
 
   def floor!
@@ -16,6 +16,6 @@ class Number < Struct.new(:index, :value, :floor, :diff, keyword_init: true)
   end
 
   def diff
-    @diff ||= value.floor - value
+    (floor - value) * (10 ** precision)
   end
 end
