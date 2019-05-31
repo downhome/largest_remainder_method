@@ -6,7 +6,7 @@ class LargestRemainderMethod
   class Error < StandardError; end
 
   class << self
-    def round(numbers, precision)
+    def round(numbers, precision: )
       new(numbers, precision).call
     end
   end

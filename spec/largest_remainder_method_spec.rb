@@ -11,8 +11,8 @@ RSpec.describe LargestRemainderMethod do
 
   Cases[:case].each do |result|
     it "rounds for precision: #{result[:precision]} " do
-      expect(described_class.round(Cases[:numbers], result[:precision])).to eq(result[:rounded])
-      expect(described_class.round(Cases[:numbers], result[:precision]).sum).to eq(result[:rounded].sum)
+      expect(described_class.round(Cases[:numbers], precision: result[:precision])).to eq(result[:rounded])
+      expect(described_class.round(Cases[:numbers], precision: result[:precision]).sum).to eq(result[:rounded].sum)
     end
   end
 end
