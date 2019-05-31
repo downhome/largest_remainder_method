@@ -23,7 +23,7 @@ class LargestRemainderMethod
   attr_reader :numbers
 
   def rounded
-    @rounded ||= sorted[0..round_up_count - 1].each(&:ceil!) + sorted[round_up_count..-1].each(&:floor!)
+    @rounded ||= sorted.take(round_up_count).each(&:ceil!) + sorted.drop(round_up_count).each(&:floor!)
   end
 
   def round_up_count
