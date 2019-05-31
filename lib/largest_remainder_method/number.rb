@@ -1,4 +1,12 @@
-class Number < Struct.new(:index, :value, :precision, keyword_init: true)
+class Number
+  attr_accessor :index, :value, :precision
+
+  def initialize(index:, value:, precision:)
+    @index = index
+    @value = value
+    @precision = precision
+  end
+
   def ceil
     value.ceil(precision)
   end
